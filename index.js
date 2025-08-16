@@ -13,26 +13,212 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
+    // Función para mostrar notificaciones en el mapa
+    function showMapNotification(message, type = 'info') {
+        const notification = document.createElement('div');
+        notification.className = `map-notification alert alert-${type} alert-dismissible fade show`;
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 2000;
+            max-width: 350px;
+            font-size: 0.9rem;
+        `;
+        notification.innerHTML = `
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        `;
+
+        document.body.appendChild(notification);
+
+        // Auto-remover después de 8 segundos
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.remove();
+            }
+        }, 8000);
+    }
+
     const initialView = {
         center: [24.1, -102],
         zoom: 5
     };
 
-    const baseMaps = {
-        'CartoDB Positron': L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-        }),
-        'Stamen Toner': L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.{ext}', {
-            attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-            subdomains: 'abcd',
-            minZoom: 0,
-            maxZoom: 20,
-            ext: 'png'
-        }),
-        'OpenStreetMap': L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        })
+    // MapTiler API Keys
+    const mapTilerKeys = {
+        personal: 'jAAFQsMBZ9a6VIm2dCwg',  // Tu API key
+        amigo: 'xRR3xCujdkUjxkDqlNTG'     // API key del amigo
     };
+
+    // Verificar disponibilidad de MapTiler SDK
+    function checkMapTilerSDK() {
+        if (typeof L.maptiler !== 'undefined' && L.maptiler.maptilerLayer) {
+            console.log('MapTiler SDK disponible');
+            return true;
+        } else {
+            console.warn('MapTiler SDK no disponible');
+            return false;
+        }
+    }
+
+    // Verificar disponibilidad de MarkerClusterGroup
+    function checkMarkerClusterGroup() {
+        if (typeof L.markerClusterGroup !== 'undefined') {
+            console.log('MarkerClusterGroup disponible');
+            return true;
+        } else {
+            console.warn('MarkerClusterGroup no disponible');
+            showMapNotification('Plugin de clusters no disponible. Los puntos se mostrarán individualmente.', 'warning');
+            return false;
+        }
+    }
+
+    // Función para crear layer con fallback automático
+    function createLayerWithFallback(mapTilerUrl, fallbackUrl, attribution, name) {
+        const mapTilerLayer = L.tileLayer(mapTilerUrl, {
+            attribution: '&copy; <a href="https://www.maptiler.com/">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            maxZoom: 18,
+            errorTileUrl: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==' // Pixel transparente
+        });
+
+        const fallbackLayer = L.tileLayer(fallbackUrl, {
+            attribution: attribution,
+            maxZoom: 18
+        });
+
+        let errorCount = 0;
+        const maxErrors = 5;
+
+        // Detectar errores de carga y cambiar a fallback
+        mapTilerLayer.on('tileerror', function (e) {
+            errorCount++;
+            console.warn(`Error cargando tile de ${name}: ${errorCount}/${maxErrors}`);
+
+            if (errorCount >= maxErrors) {
+                console.warn(`Cambiando ${name} a fallback debido a múltiples errores`);
+
+                // Mostrar notificación al usuario
+                showMapNotification(`${name}: Usando mapa alternativo debido a problemas de conectividad`, 'warning');
+
+                // Reemplazar el layer problemático con el fallback
+                if (map.hasLayer(mapTilerLayer)) {
+                    map.removeLayer(mapTilerLayer);
+                    map.addLayer(fallbackLayer);
+
+                    // Actualizar el control de capas
+                    setTimeout(() => {
+                        const layersControl = map._controlLayers;
+                        if (layersControl) {
+                            layersControl._layers.forEach(layer => {
+                                if (layer.layer === mapTilerLayer) {
+                                    layer.layer = fallbackLayer;
+                                }
+                            });
+                        }
+                    }, 100);
+                }
+            }
+        });
+
+        return mapTilerLayer;
+    }
+
+    // Función para crear MapTiler layer usando SDK o fallback con API key específica
+    function createMapTilerLayer(styleId, apiKeyType, fallbackUrl, attribution, name) {
+        const apiKey = mapTilerKeys[apiKeyType];
+
+        if (checkMapTilerSDK()) {
+            try {
+                // Usar el SDK de MapTiler (método recomendado)
+                const layer = L.maptiler.maptilerLayer({
+                    apiKey: apiKey,
+                    style: styleId,
+                    maxZoom: 18 // Asegurar maxZoom para clusters
+                });
+
+                // Configurar maxZoom manualmente si no está definido
+                if (!layer.options) layer.options = {};
+                if (!layer.options.maxZoom) layer.options.maxZoom = 18;
+
+                console.log(`${name} creado con MapTiler SDK usando key ${apiKeyType}`);
+                return layer;
+            } catch (error) {
+                console.warn(`Error creando ${name} con SDK:`, error);
+            }
+        }
+
+        // Fallback a tile layer estándar
+        console.log(`${name} usando fallback`);
+        return L.tileLayer(fallbackUrl, {
+            attribution: attribution,
+            maxZoom: 18
+        });
+    }
+
+    // Tu mapa personalizado de MapTiler
+    const MiMapaPersonalizado = createMapTilerLayer(
+        '0198a42c-5e08-77a1-9773-763ee4e12b32', // Tu style ID
+        'personal', // Usar tu API key
+        'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+        '&copy; <a href="https://www.maptiler.com/">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        'Mi Mapa Personalizado'
+    );
+
+    // Mapas originales del amigo con su API key
+    const SenerLightOriginal = createMapTilerLayer(
+        '0198a9af-dc7c-79d3-8316-a80767ad1d0f', // Style ID original del amigo
+        'amigo', // Usar API key del amigo
+        'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+        '&copy; <a href="https://www.maptiler.com/">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        'SENER Light Original'
+    );
+
+    const SenerDarkOriginal = createMapTilerLayer(
+        '0198a9f0-f135-7991-aaec-bea71681556e', // Style ID original del amigo
+        'amigo', // Usar API key del amigo
+        'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+        '&copy; <a href="https://www.maptiler.com/">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        'SENER Dark Original'
+    );
+
+    // Mapas adicionales usando estilos predefinidos
+    const SenerLight = createMapTilerLayer(
+        L.maptiler.MapStyle.STREETS, // Estilo predefinido
+        'personal', // Usar tu API key
+        'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+        '&copy; <a href="https://www.maptiler.com/">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        'SENER Streets'
+    );
+
+    const SenerDark = createMapTilerLayer(
+        L.maptiler.MapStyle.DARK, // Estilo predefinido oscuro
+        'personal', // Usar tu API key
+        'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+        '&copy; <a href="https://www.maptiler.com/">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        'SENER Dark'
+    );
+
+    // Google Satellite Layer (fallback)
+    const GoogleSatellite = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+        attribution: '&copy; Google',
+        maxZoom: 20
+    });
+
+    const baseMaps = {
+        'SENER Azul': MiMapaPersonalizado,
+        'SENER Light': SenerLightOriginal,
+        'SENER Oscuro': SenerDarkOriginal
+    };
+
+    // Asegurar que todos los mapas base tengan maxZoom configurado
+    Object.keys(baseMaps).forEach(mapName => {
+        const layer = baseMaps[mapName];
+        if (layer && layer.options && !layer.options.maxZoom) {
+            layer.options.maxZoom = 18;
+            console.log(`Configurando maxZoom para ${mapName}`);
+        }
+    });
 
     // Definir límites aproximados de México para restringir navegación
     const mexicoBounds = L.latLngBounds([
@@ -44,9 +230,10 @@ document.addEventListener('DOMContentLoaded', function () {
         center: initialView.center,
         zoom: initialView.zoom,
         minZoom: 4,
+        maxZoom: 18, // Agregar maxZoom para MarkerClusterGroup
         maxBounds: mexicoBounds,
         maxBoundsViscosity: 0.9,
-        layers: [baseMaps['CartoDB Positron']]
+        layers: [baseMaps['SENER Light']]
     });
 
     // Evitar hacer zoom out más allá del marco continental relevante
@@ -57,9 +244,13 @@ document.addEventListener('DOMContentLoaded', function () {
     // Ajustar vista para asegurar bounds al iniciar (si se desea ver todo México)
     map.fitBounds(mexicoBounds.pad(-0.15));
 
-    document.getElementById(CENTER_MAP_BTN_ID).addEventListener('click', () => {
-        map.setView(initialView.center, initialView.zoom);
-    });
+    // Agregar event listener al botón de centrar mapa si existe
+    const centerBtn = document.getElementById(CENTER_MAP_BTN_ID);
+    if (centerBtn) {
+        centerBtn.addEventListener('click', () => {
+            map.setView(initialView.center, initialView.zoom);
+        });
+    }
 
     const urls = {
         'Ductos GLP': 'https://cdn.sassoapps.com/solicitud/ductos_glp.geojson',
@@ -134,10 +325,72 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 });
 
-                if (isPointLayer) {
-                    const markers = L.markerClusterGroup();
-                    markers.addLayer(geoJsonLayer);
-                    overlayMaps[name] = markers;
+                if (isPointLayer && checkMarkerClusterGroup()) {
+                    // Asegurar que el mapa tenga maxZoom configurado
+                    if (!map.options.maxZoom) {
+                        map.options.maxZoom = 18;
+                    }
+
+                    // Configurar cluster con opciones mejoradas
+                    try {
+                        const markers = L.markerClusterGroup({
+                            chunkedLoading: true,
+                            chunkProgress: function (processed, total, elapsed) {
+                                if (processed === total) {
+                                    console.log(`Cluster ${name} completado: ${total} puntos`);
+                                }
+                            },
+                            maxClusterRadius: function (zoom) {
+                                // Radio dinámico basado en zoom
+                                return zoom < 10 ? 80 : zoom < 15 ? 50 : 30;
+                            },
+                            spiderfyOnMaxZoom: true,
+                            showCoverageOnHover: true,
+                            zoomToBoundsOnClick: true,
+                            spiderfyDistanceMultiplier: 1.5,
+                            removeOutsideVisibleBounds: true,
+                            animate: true,
+                            animateAddingMarkers: true,
+                            disableClusteringAtZoom: 18,
+                            // Usar iconCreateFunction por defecto (comentado para usar el default)
+                            // iconCreateFunction se omite para usar el estilo por defecto de MarkerCluster
+                        });
+
+                        // Eventos del cluster para mejor UX
+                        markers.on('clusterclick', function (e) {
+                            const cluster = e.layer;
+                            const count = cluster.getChildCount();
+                            console.log(`Cluster clickeado: ${count} elementos de ${name}`);
+
+                            // Agregar clase temporal para animación
+                            cluster._icon.classList.add('cluster-active');
+                            setTimeout(() => {
+                                if (cluster._icon) {
+                                    cluster._icon.classList.remove('cluster-active');
+                                }
+                            }, 2000);
+                        });
+
+                        markers.on('clustermouseover', function (e) {
+                            const cluster = e.layer;
+                            const count = cluster.getChildCount();
+
+                            // Tooltip personalizado
+                            cluster.bindTooltip(`${name}: ${count} elementos`, {
+                                permanent: false,
+                                direction: 'top',
+                                className: 'cluster-tooltip'
+                            }).openTooltip();
+                        });
+
+                        markers.addLayer(geoJsonLayer);
+                        overlayMaps[name] = markers;
+                        console.log(`Cluster creado para ${name} con ${geoJsonLayer.getLayers().length} features`);
+                    } catch (error) {
+                        console.warn(`Error creando cluster para ${name}:`, error);
+                        // Fallback sin cluster
+                        overlayMaps[name] = geoJsonLayer;
+                    }
                 } else {
                     overlayMaps[name] = geoJsonLayer;
                 }
@@ -151,7 +404,39 @@ document.addEventListener('DOMContentLoaded', function () {
 
     Promise.all(fetchPromises)
         .then(() => {
-            L.control.layers(baseMaps, overlayMaps, { collapsed: true }).addTo(map);
+            const layersControl = L.control.layers(baseMaps, overlayMaps, { collapsed: true }).addTo(map);
+            
+            // Guardar referencia al control de capas para sincronización
+            window.layersControl = layersControl;
+            
+            // Agregar event listeners para sincronización bidireccional
+            map.on('overlayadd', function(e) {
+                syncCardSwitch(e.name, true);
+            });
+            
+            map.on('overlayremove', function(e) {
+                syncCardSwitch(e.name, false);
+            });
+
+            // Agregar control de localización si está disponible
+            if (typeof L.control.locate === 'function') {
+                try {
+                    L.control.locate({
+                        position: 'topright',
+                        strings: {
+                            title: "Mostrar mi ubicación"
+                        },
+                        locateOptions: {
+                            maxZoom: 16
+                        }
+                    }).addTo(map);
+                } catch (error) {
+                    console.warn('Error al agregar control de localización:', error);
+                }
+            } else {
+                console.warn('Control de localización no disponible');
+            }
+
             renderTotals();
         })
         .finally(() => {
@@ -199,11 +484,15 @@ document.addEventListener('DOMContentLoaded', function () {
             container.appendChild(col);
             toggleLayer(name, true);
         });
-        // Listeners para switches
+        // Listeners para switches con sincronización bidireccional
         container.querySelectorAll('.layer-switch').forEach(input => {
             input.addEventListener('change', e => {
                 const layerName = e.target.getAttribute('data-layer');
-                toggleLayer(layerName, e.target.checked);
+                const isChecked = e.target.checked;
+                toggleLayer(layerName, isChecked);
+                
+                // Sincronizar con el control de capas de Leaflet
+                syncLayerControlCheckbox(layerName, isChecked);
             });
         });
         buildLegend();
@@ -264,10 +553,66 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    document.getElementById(SEARCH_BTN_ID).addEventListener('click', search);
-    document.getElementById(SEARCH_INPUT_ID).addEventListener('keyup', (e) => {
-        if (e.key === 'Enter') {
-            search();
-        }
-    });
+    // Agregar event listeners solo si los elementos existen
+    const searchBtn = document.getElementById(SEARCH_BTN_ID);
+    const searchInput = document.getElementById(SEARCH_INPUT_ID);
+
+    if (searchBtn) {
+        searchBtn.addEventListener('click', search);
+    }
+
+    if (searchInput) {
+        searchInput.addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') {
+                search();
+            }
+        });
+    }
 });
+// Funciones de sincronización bidireccional entre switches y control de capas
+
+function syncCardSwitch(layerName, isActive) {
+    // Sincronizar el switch de la card cuando se cambia desde el control de capas
+    const switchElement = document.querySelector(`input[data-layer="${layerName}"]`);
+    if (switchElement && switchElement.checked !== isActive) {
+        switchElement.checked = isActive;
+        console.log(`Switch sincronizado: ${layerName} = ${isActive}`);
+    }
+}
+
+function syncLayerControlCheckbox(layerName, isChecked) {
+    // Sincronizar el control de capas cuando se cambia desde el switch
+    try {
+        const layer = overlayMaps[layerName];
+        if (layer) {
+            if (isChecked && !map.hasLayer(layer)) {
+                map.addLayer(layer);
+            } else if (!isChecked && map.hasLayer(layer)) {
+                map.removeLayer(layer);
+            }
+            console.log(`Control de capas sincronizado: ${layerName} = ${isChecked}`);
+        }
+    } catch (error) {
+        console.warn('Error sincronizando control de capas:', error);
+    }
+}
+
+// Función mejorada para toggle de capas con sincronización
+function toggleLayer(name, enable) {
+    const layer = overlayMaps[name];
+    if (!layer) return;
+    
+    if (enable) {
+        if (!map.hasLayer(layer)) {
+            map.addLayer(layer);
+            activeLayers.add(name);
+        }
+    } else {
+        if (map.hasLayer(layer)) {
+            map.removeLayer(layer);
+            activeLayers.delete(name);
+        }
+    }
+    
+    console.log(`Capa ${name} ${enable ? 'activada' : 'desactivada'}`);
+}

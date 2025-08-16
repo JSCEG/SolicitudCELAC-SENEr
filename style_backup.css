@@ -1,4 +1,3 @@
-﻿
 :root {
     --color-burdeos-oscuro: #35031B;
     --color-burdeos-medio: #601623;
@@ -40,8 +39,7 @@
 
 body {
     font-family: var(--font-family);
-    background: radial-gradient(circle at 25% 20%, #ffffff 0%, #f5f6f7 
-45%, #eceeef 100%);
+    background: radial-gradient(circle at 25% 20%, #ffffff 0%, #f5f6f7 45%, #eceeef 100%);
     color: var(--color-burdeos-oscuro);
     padding-top: 0;
 }
@@ -211,32 +209,15 @@ h1 {
 
 #center-map-btn {
     position: absolute;
-    bottom: 30px;
-    left: 10px;
+    top: 10px;
+    right: 10px;
     z-index: 400;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(32, 112, 91, 0.3);
-    color: var(--color-verde-profundo);
-    border-radius: 8px;
-    padding: 8px 12px;
-    font-size: 14px;
-    font-weight: 600;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-    border-radius: 12px;
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    font-weight: bold;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    background-color: var(--color-magenta-claro);
+    border: 1px solid var(--color-magenta-oscuro);
+    color: var(--color-magenta-oscuro);
 }
 
-/* Switches dentro de las cards (personalizaciÃ³n leve) */
+/* Switches dentro de las cards (personalización leve) */
 .layer-switch:checked {
     background-color: var(--color-verde-profundo);
     border-color: var(--color-verde-profundo);
@@ -391,8 +372,7 @@ h1 {
 }
 
 #preProgressBar {
-    background: linear-gradient(90deg, var(--color-magenta-vivo), 
-var(--color-rojo-vivo));
+    background: linear-gradient(90deg, var(--color-magenta-vivo), var(--color-rojo-vivo));
 }
 
 .preloader-hide {
@@ -429,8 +409,7 @@ var(--color-rojo-vivo));
 }
 
 #legend-container .card-header {
-    background: linear-gradient(135deg, var(--color-verde-profundo), 
-var(--color-verde-marino));
+    background: linear-gradient(135deg, var(--color-verde-profundo), var(--color-verde-marino));
     color: white;
     border-bottom: none;
     font-weight: 600;
@@ -532,7 +511,7 @@ var(--color-verde-marino));
 /* 
 Mejoras adicionales para la interfaz */
 
-/* Estilo para el tÃ­tulo principal */
+/* Estilo para el título principal */
 h1 {
     font-weight: 700;
     font-size: 1.75rem;
@@ -579,7 +558,7 @@ h1 {
     box-shadow: 0 0 0 0.2rem rgba(32, 112, 91, 0.25);
 }
 
-/* AnimaciÃ³n para el preloader */
+/* Animación para el preloader */
 @keyframes pulse {
 
     0%,
@@ -611,7 +590,7 @@ h1 {
     }
 }
 
-/* Estilo para el botÃ³n de centrar mapa */
+/* Estilo para el botón de centrar mapa */
 #center-map-btn:hover {
     background-color: var(--color-magenta-oscuro);
     color: white;
@@ -633,8 +612,7 @@ h1 {
 }
 
 #table-container .card-header {
-    background: linear-gradient(135deg, var(--color-burdeos-medio), 
-var(--color-vino));
+    background: linear-gradient(135deg, var(--color-burdeos-medio), var(--color-vino));
     color: white;
     font-weight: 600;
 }
@@ -690,7 +668,7 @@ ejoras de accesibilidad y UX */
     outline-offset: 2px;
 }
 
-/* Mejoras para dispositivos tÃ¡ctiles */
+/* Mejoras para dispositivos táctiles */
 @media (hover: none) and (pointer: coarse) {
     #total-cards-container .card {
         transition: none;
@@ -808,7 +786,7 @@ ejoras de accesibilidad y UX */
     pointer-events: none;
 }
 
-/* AnimaciÃ³n sutil para los elementos del footer */
+/* Animación sutil para los elementos del footer */
 .main-footer .col-md-4,
 .main-footer .col-lg-4,
 .main-footer .col-lg-8 {
@@ -834,8 +812,7 @@ ejoras de accesibilidad y UX */
 }
 
 .main-footer img:hover {
-    filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(255, 255, 
-255, 0.3));
+    filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
     transform: scale(1.05);
 }
 
@@ -875,7 +852,7 @@ ejoras de accesibilidad y UX */
         font-size: 1.3rem;
     }
 }/* Estilos 
-para el control de localizaciÃ³n */
+para el control de localización */
 .leaflet-control-locate {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
@@ -910,7 +887,7 @@ para el control de localizaciÃ³n */
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilos para el popup de ubicaciÃ³n */
+/* Estilos para el popup de ubicación */
 .leaflet-popup-content {
     font-family: var(--font-family);
 }
@@ -962,6 +939,7 @@ otificaciones del mapa */
     opacity: 0;
 }/* Estil
 os mejorados para marker clusters */
+.marker-cluster {
     background-clip: padding-box;
     border-radius: 50%;
     border: 2px solid rgba(255, 255, 255, 0.8);
@@ -969,18 +947,22 @@ os mejorados para marker clusters */
     transition: all 0.3s ease;
 }
 
+.marker-cluster:hover {
     transform: scale(1.1);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
 }
 
+.marker-cluster-small {
     width: 30px !important;
     height: 30px !important;
 }
 
+.marker-cluster-medium {
     width: 40px !important;
     height: 40px !important;
 }
 
+.marker-cluster-large {
     width: 50px !important;
     height: 50px !important;
 }
@@ -998,7 +980,8 @@ os mejorados para marker clusters */
     z-index: 1000;
 }
 
-/* AnimaciÃ³n para cuando se abren los clusters */
+/* Animación para cuando se abren los clusters */
+.marker-cluster-spiderfy {
     animation: spiderfy 0.3s ease-out;
 }
 
@@ -1024,20 +1007,22 @@ os mejorados para marker clusters */
 }/* 
 Estilos personalizados para clusters de Leaflet */
 
-/* Clusters pequeÃ±os (2-10 elementos) */
-    background: linear-gradient(135deg, var(--color-verde-profundo) 
-0%, var(--color-verde-marino) 100%);
+/* Clusters pequeños (2-10 elementos) */
+.marker-cluster-small {
+    background: linear-gradient(135deg, var(--color-verde-profundo) 0%, var(--color-verde-marino) 100%);
     border: 3px solid rgba(255, 255, 255, 0.9);
     border-radius: 50%;
     box-shadow: 0 4px 12px rgba(32, 112, 91, 0.3);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.marker-cluster-small:hover {
     transform: scale(1.1);
     box-shadow: 0 6px 20px rgba(32, 112, 91, 0.4);
     border-color: var(--color-amarillo-claro);
 }
 
+.marker-cluster-small div {
     background: transparent;
     color: white;
     font-weight: 700;
@@ -1047,19 +1032,21 @@ Estilos personalizados para clusters de Leaflet */
 }
 
 /* Clusters medianos (10-100 elementos) */
-    background: linear-gradient(135deg, var(--color-burdeos-medio) 0%, 
-var(--color-vino) 100%);
+.marker-cluster-medium {
+    background: linear-gradient(135deg, var(--color-burdeos-medio) 0%, var(--color-vino) 100%);
     border: 3px solid rgba(255, 255, 255, 0.9);
     border-radius: 50%;
     box-shadow: 0 4px 12px rgba(96, 22, 35, 0.3);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.marker-cluster-medium:hover {
     transform: scale(1.1);
     box-shadow: 0 6px 20px rgba(96, 22, 35, 0.4);
     border-color: var(--color-amarillo-claro);
 }
 
+.marker-cluster-medium div {
     background: transparent;
     color: white;
     font-weight: 700;
@@ -1069,19 +1056,21 @@ var(--color-vino) 100%);
 }
 
 /* Clusters grandes (100+ elementos) */
-    background: linear-gradient(135deg, var(--color-magenta-oscuro) 
-0%, var(--color-magenta-vivo) 100%);
+.marker-cluster-large {
+    background: linear-gradient(135deg, var(--color-magenta-oscuro) 0%, var(--color-magenta-vivo) 100%);
     border: 3px solid rgba(255, 255, 255, 0.9);
     border-radius: 50%;
     box-shadow: 0 4px 12px rgba(126, 29, 55, 0.3);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.marker-cluster-large:hover {
     transform: scale(1.1);
     box-shadow: 0 6px 20px rgba(126, 29, 55, 0.4);
     border-color: var(--color-amarillo-claro);
 }
 
+.marker-cluster-large div {
     background: transparent;
     color: white;
     font-weight: 700;
@@ -1090,7 +1079,8 @@ var(--color-vino) 100%);
     font-family: var(--font-family);
 }
 
-/* AnimaciÃ³n de apariciÃ³n de clusters */
+/* Animación de aparición de clusters */
+.marker-cluster {
     animation: clusterFadeIn 0.4s ease-out;
 }
 
@@ -1106,10 +1096,14 @@ var(--color-vino) 100%);
 }
 
 /* Estilos para clusters al hacer zoom */
+.leaflet-cluster-anim .marker-cluster-small,
+.leaflet-cluster-anim .marker-cluster-medium,
+.leaflet-cluster-anim .marker-cluster-large {
     transition: all 0.3s ease-out;
 }
 
-/* Mejoras para el Ã¡rea de cobertura del cluster */
+/* Mejoras para el área de cobertura del cluster */
+.marker-cluster-cover-background {
     background: rgba(32, 112, 91, 0.1);
     border: 2px dashed var(--color-verde-profundo);
     border-radius: 50%;
@@ -1137,104 +1131,137 @@ var(--color-vino) 100%);
 }
 
 /* Clusters con efecto glassmorphism */
+.marker-cluster-small,
+.marker-cluster-medium,
+.marker-cluster-large {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 }
 
 /* Responsive adjustments para clusters */
 @media (max-width: 768px) {
+    .marker-cluster-small div,
+    .marker-cluster-medium div,
+    .marker-cluster-large div {
         font-size: 11px;
     }
     
+    .marker-cluster-small,
+    .marker-cluster-medium,
+    .marker-cluster-large {
         border-width: 2px;
     }
 }
 
 /* Estados activos y focus para accesibilidad */
+.marker-cluster:focus {
     outline: 2px solid var(--color-amarillo-claro);
     outline-offset: 2px;
 }
 
 /* Mejoras para clusters en modo oscuro */
 @media (prefers-color-scheme: dark) {
+    .marker-cluster-small,
+    .marker-cluster-medium,
+    .marker-cluster-large {
         border-color: rgba(255, 255, 255, 0.7);
     }
 }/* Est
-ilos especÃ­ficos por tipo de capa energÃ©tica */
+ilos específicos por tipo de capa energética */
 
 /* Ductos GLP */
+.cluster-ductos-glp.marker-cluster-small,
+.cluster-ductos-glp.marker-cluster-medium,
+.cluster-ductos-glp.marker-cluster-large {
     background: linear-gradient(135deg, #E66A54 0%, #E85D33 100%);
     border-color: rgba(230, 106, 84, 0.3);
 }
 
-/* Ductos de ImportaciÃ³n */
+/* Ductos de Importación */
+.cluster-ductos-de-importacion.marker-cluster-small,
+.cluster-ductos-de-importacion.marker-cluster-medium,
+.cluster-ductos-de-importacion.marker-cluster-large {
     background: linear-gradient(135deg, #E24849 0%, #B64836 100%);
     border-color: rgba(226, 72, 73, 0.3);
 }
 
 /* Ductos no SISTRANGAS */
+.cluster-ductos-no-sistrangas.marker-cluster-small,
+.cluster-ductos-no-sistrangas.marker-cluster-medium,
+.cluster-ductos-no-sistrangas.marker-cluster-large {
     background: linear-gradient(135deg, #B64836 0%, #601805 100%);
     border-color: rgba(182, 72, 54, 0.3);
 }
 
-/* Ductos PetrolÃ­feros */
+/* Ductos Petrolíferos */
+.cluster-ductos-petroliferos.marker-cluster-small,
+.cluster-ductos-petroliferos.marker-cluster-medium,
+.cluster-ductos-petroliferos.marker-cluster-large {
     background: linear-gradient(135deg, #E85D33 0%, #E85D14 100%);
     border-color: rgba(232, 93, 51, 0.3);
 }
 
 /* Ductos SISTRANGAS */
+.cluster-ductos-sistrangas.marker-cluster-small,
+.cluster-ductos-sistrangas.marker-cluster-medium,
+.cluster-ductos-sistrangas.marker-cluster-large {
     background: linear-gradient(135deg, #E85D14 0%, #C69A04 100%);
     border-color: rgba(232, 93, 20, 0.3);
 }
 
-/* Proyectos ElÃ©ctricos */
+/* Proyectos Eléctricos */
+.cluster-proyectos-electricos.marker-cluster-small,
+.cluster-proyectos-electricos.marker-cluster-medium,
+.cluster-proyectos-electricos.marker-cluster-large {
     background: linear-gradient(135deg, #20705B 0%, #1F7A62 100%);
     border-color: rgba(32, 112, 91, 0.3);
 }
 
 /* Gas LP */
+.cluster-gas-lp.marker-cluster-small,
+.cluster-gas-lp.marker-cluster-medium,
+.cluster-gas-lp.marker-cluster-large {
     background: linear-gradient(135deg, #C69A04 0%, #B88C23 100%);
     border-color: rgba(198, 154, 4, 0.3);
 }
 
 /* Gas Natural */
+.cluster-gas-natural.marker-cluster-small,
+.cluster-gas-natural.marker-cluster-medium,
+.cluster-gas-natural.marker-cluster-large {
     background: linear-gradient(135deg, #225655 0%, #174D47 100%);
     border-color: rgba(34, 86, 85, 0.3);
 }
 
-/* LÃ­neas de TransmisiÃ³n */
+/* Líneas de Transmisión */
+.cluster-lineas-de-transmision.marker-cluster-small,
+.cluster-lineas-de-transmision.marker-cluster-medium,
+.cluster-lineas-de-transmision.marker-cluster-large {
     background: linear-gradient(135deg, #58152A 0%, #35031B 100%);
     border-color: rgba(88, 21, 42, 0.3);
 }
 
-/* Subestaciones ElÃ©ctricas */
+/* Subestaciones Eléctricas */
+.cluster-subestaciones-electricas.marker-cluster-small,
+.cluster-subestaciones-electricas.marker-cluster-medium,
+.cluster-subestaciones-electricas.marker-cluster-large {
     background: linear-gradient(135deg, #7E1D37 0%, #AC4651 100%);
     border-color: rgba(126, 29, 55, 0.3);
 }
 
-/* Efectos hover especÃ­ficos por capa */
-.cluster-ductos-glp:hover { box-shadow: 0 6px 20px rgba(230, 106, 84, 
-0.4); }
-.cluster-ductos-de-importacion:hover { box-shadow: 0 6px 20px 
-rgba(226, 72, 73, 0.4); }
-.cluster-ductos-no-sistrangas:hover { box-shadow: 0 6px 20px rgba(182, 
-72, 54, 0.4); }
-.cluster-ductos-petroliferos:hover { box-shadow: 0 6px 20px rgba(232, 
-93, 51, 0.4); }
-.cluster-ductos-sistrangas:hover { box-shadow: 0 6px 20px rgba(232, 
-93, 20, 0.4); }
-.cluster-proyectos-electricos:hover { box-shadow: 0 6px 20px rgba(32, 
-112, 91, 0.4); }
-.cluster-gas-lp:hover { box-shadow: 0 6px 20px rgba(198, 154, 4, 0.4); 
-}
-.cluster-gas-natural:hover { box-shadow: 0 6px 20px rgba(34, 86, 85, 
-0.4); }
-.cluster-lineas-de-transmision:hover { box-shadow: 0 6px 20px rgba(88, 
-21, 42, 0.4); }
-.cluster-subestaciones-electricas:hover { box-shadow: 0 6px 20px 
-rgba(126, 29, 55, 0.4); }
+/* Efectos hover específicos por capa */
+.cluster-ductos-glp:hover { box-shadow: 0 6px 20px rgba(230, 106, 84, 0.4); }
+.cluster-ductos-de-importacion:hover { box-shadow: 0 6px 20px rgba(226, 72, 73, 0.4); }
+.cluster-ductos-no-sistrangas:hover { box-shadow: 0 6px 20px rgba(182, 72, 54, 0.4); }
+.cluster-ductos-petroliferos:hover { box-shadow: 0 6px 20px rgba(232, 93, 51, 0.4); }
+.cluster-ductos-sistrangas:hover { box-shadow: 0 6px 20px rgba(232, 93, 20, 0.4); }
+.cluster-proyectos-electricos:hover { box-shadow: 0 6px 20px rgba(32, 112, 91, 0.4); }
+.cluster-gas-lp:hover { box-shadow: 0 6px 20px rgba(198, 154, 4, 0.4); }
+.cluster-gas-natural:hover { box-shadow: 0 6px 20px rgba(34, 86, 85, 0.4); }
+.cluster-lineas-de-transmision:hover { box-shadow: 0 6px 20px rgba(88, 21, 42, 0.4); }
+.cluster-subestaciones-electricas:hover { box-shadow: 0 6px 20px rgba(126, 29, 55, 0.4); }
 
-/* AnimaciÃ³n de pulsaciÃ³n para clusters activos */
+/* Animación de pulsación para clusters activos */
 @keyframes clusterPulse {
     0%, 100% {
         transform: scale(1);
@@ -1246,10 +1273,12 @@ rgba(126, 29, 55, 0.4); }
     }
 }
 
+.marker-cluster.cluster-active {
     animation: clusterPulse 2s ease-in-out infinite;
 }
 
 /* Mejoras para el spiderfy (cuando se expanden los clusters) */
+.marker-cluster-spiderfy-link {
     stroke: var(--color-verde-profundo);
     stroke-width: 2;
     stroke-opacity: 0.6;
@@ -1326,39 +1355,49 @@ rgba(126, 29, 55, 0.4); }
 }
 
 /* Estilos para clusters en diferentes estados de zoom */
+.leaflet-zoom-anim .marker-cluster {
     transition: all 0.25s ease-out;
 }
 
 /* Mejoras para clusters en pantallas de alta densidad */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .marker-cluster div {
         font-weight: 600;
         text-rendering: optimizeLegibility;
     }
 }
 
 /* Estados de accesibilidad mejorados */
+.marker-cluster:focus-visible {
     outline: 3px solid var(--color-amarillo-claro);
     outline-offset: 3px;
 }
 
-/* AnimaciÃ³n suave para cambios de tamaÃ±o de cluster */
+/* Animación suave para cambios de tamaño de cluster */
+.marker-cluster {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Mejoras para el contraste en modo de alto contraste */
 @media (prefers-contrast: high) {
+    .marker-cluster-small,
+    .marker-cluster-medium,
+    .marker-cluster-large {
         border-width: 4px;
         border-color: white;
     }
     
+    .marker-cluster div {
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
     }
 }/* Est
-ilos para centrar nÃºmeros en clusters */
+ilos para centrar números en clusters */
+.marker-cluster {
     background-clip: padding-box;
     border-radius: 50%;
 }
 
+.marker-cluster div {
     width: 100%;
     height: 100%;
     border-radius: 50%;
@@ -1372,6 +1411,7 @@ ilos para centrar nÃºmeros en clusters */
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
+.marker-cluster span {
     line-height: 1;
     margin: 0;
     padding: 0;
@@ -1383,18 +1423,19 @@ ilos para centrar nÃºmeros en clusters */
 }
 
 /* C
-ORRECCIÃ“N: Centrar nÃºmeros en clusters de Leaflet MarkerCluster */
+ORRECCIÓN: Centrar números en clusters de Leaflet MarkerCluster */
 
 /* Sobrescribir estilos por defecto de MarkerCluster */
+.marker-cluster {
     background-clip: padding-box !important;
     border-radius: 50% !important;
     border: 2px solid rgba(255, 255, 255, 0.8) !important;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
     cursor: pointer !important; /* Asegurar que se vea clickeable */
-    pointer-events: auto !important; /* Asegurar que reciba eventos de 
-click */
+    pointer-events: auto !important; /* Asegurar que reciba eventos de click */
 }
 
+.marker-cluster div {
     width: 100% !important;
     height: 100% !important;
     border-radius: 50% !important;
@@ -1410,10 +1451,10 @@ click */
     margin: 0 !important;
     padding: 0 !important;
     position: relative !important;
-    pointer-events: none !important; /* Evitar interferencia con 
-eventos de click */
+    pointer-events: none !important; /* Evitar interferencia con eventos de click */
 }
 
+.marker-cluster span {
     line-height: 1 !important;
     margin: 0 !important;
     padding: 0 !important;
@@ -1425,38 +1466,43 @@ eventos de click */
     left: 50% !important;
     transform: translate(-50%, -50%) !important;
     font-size: inherit !important;
-    pointer-events: none !important; /* Evitar que el texto interfiera 
-con clicks */
+    pointer-events: none !important; /* Evitar que el texto interfiera con clicks */
 }
 
-/* TamaÃ±os y colores especÃ­ficos con colores institucionales */
+/* Tamaños y colores específicos con colores institucionales */
+.marker-cluster-small {
     background-color: var(--color-verde-profundo) !important;
     width: 35px !important;
     height: 35px !important;
 }
 
+.marker-cluster-small div {
     background-color: var(--color-verde-profundo) !important;
     width: 35px !important;
     height: 35px !important;
     font-size: 12px !important;
 }
 
+.marker-cluster-medium {
     background-color: var(--color-burdeos-medio) !important;
     width: 42px !important;
     height: 42px !important;
 }
 
+.marker-cluster-medium div {
     background-color: var(--color-burdeos-medio) !important;
     width: 42px !important;
     height: 42px !important;
     font-size: 13px !important;
 }
 
+.marker-cluster-large {
     background-color: var(--color-magenta-oscuro) !important;
     width: 50px !important;
     height: 50px !important;
 }
 
+.marker-cluster-large div {
     background-color: var(--color-magenta-oscuro) !important;
     width: 50px !important;
     height: 50px !important;
@@ -1464,776 +1510,38 @@ con clicks */
 }
 
 /* Efectos hover sutiles para clusters (sin interferir con clicks) */
+.marker-cluster:hover {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4) !important;
     border-width: 3px !important;
-    transition: box-shadow 0.2s ease, border-width 0.2s ease 
-!important;
+    transition: box-shadow 0.2s ease, border-width 0.2s ease !important;
 }
 
-/* AnimaciÃ³n suave solo para sombras */
-    transition: box-shadow 0.2s ease, border-width 0.2s ease 
-!important;
+/* Animación suave solo para sombras */
+.marker-cluster {
+    transition: box-shadow 0.2s ease, border-width 0.2s ease !important;
 }
 
-/* Clusters especÃ­ficos por capa con colores diferenciados */
+/* Clusters específicos por capa con colores diferenciados */
+.cluster-ductos-glp .marker-cluster div {
     background-color: var(--color-rojo-coral) !important;
 }
 
+.cluster-ductos-de-importacion .marker-cluster div {
     background-color: var(--color-rojo-vivo) !important;
 }
 
+.cluster-gas-lp .marker-cluster div {
     background-color: var(--color-mostaza-amarillo) !important;
 }
 
+.cluster-gas-natural .marker-cluster div {
     background-color: var(--color-verde-oscuro) !important;
 }
 
+.cluster-lineas-de-transmision .marker-cluster div {
     background-color: var(--color-vino) !important;
 }
 
+.cluster-subestaciones-electricas .marker-cluster div {
     background-color: var(--color-magenta-oscuro) !important;
-}
-
-
-/* ===== ESTILOS MEJORADOS PARA POPUPS Y CONTROLES DE LEAFLET ===== */
-
-/* Popups del mapa - Diseño elegante con bordes afinados */
-.leaflet-popup-content-wrapper,
-.leaflet-popup-content-wrapper * {
-    background: white !important;
-    background-color: white !important;
-}
-
-.leaflet-popup-content-wrapper {
-    background: white !important;
-    background-color: white !important;
-    backdrop-filter: blur(15px) !important;
-    -webkit-backdrop-filter: blur(15px) !important;
-    border: 1px solid rgba(32, 112, 91, 0.3) !important;
-    border-radius: 12px !important;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 
-                0 2px 8px rgba(32, 112, 91, 0.08) !important;
-    padding: 0 !important;
-    overflow: hidden !important;
-}
-
-.leaflet-popup-content {
-    margin: 0 !important;
-    padding: 20px !important;
-    font-family: var(--font-family) !important;
-    line-height: 1.5 !important;
-    max-width: 350px !important;
-    background: white !important;
-    background-color: white !important;
-    color: var(--color-burdeos-oscuro) !important;
-}
-
-/* Encabezado del popup */
-.leaflet-popup-content h6 {
-    margin: 0 0 15px 0 !important;
-    padding: 0 0 10px 0 !important;
-    font-weight: 700 !important;
-    font-size: 1.1rem !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.5px !important;
-    border-bottom: 2px solid var(--color-verde-profundo) !important;
-    color: var(--color-burdeos-oscuro) !important;
-}
-
-/* Tabla dentro del popup */
-.leaflet-popup-content .table-responsive {
-    border-radius: 8px !important;
-    overflow: hidden !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
-}
-
-.leaflet-popup-content .table {
-    margin-bottom: 0 !important;
-    font-size: 0.9rem !important;
-    background: white !important;
-}
-
-.leaflet-popup-content .table th {
-    background: linear-gradient(135deg, var(--color-verde-profundo), var(--color-verde-marino)) !important;
-    color: white !important;
-    font-weight: 600 !important;
-    font-size: 0.8rem !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.3px !important;
-    padding: 12px 10px !important;
-    border: none !important;
-}
-
-.leaflet-popup-content .table td {
-    padding: 10px !important;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
-    color: var(--color-burdeos-oscuro) !important;
-    font-weight: 500 !important;
-}
-
-.leaflet-popup-content .table tr:nth-child(even) {
-    background-color: rgba(32, 112, 91, 0.03) !important;
-}
-
-.leaflet-popup-content .table tr:hover {
-    background-color: rgba(32, 112, 91, 0.08) !important;
-    transition: background-color 0.2s ease !important;
-}
-
-/* Punta del popup - Triangulo afinado */
-.leaflet-popup-tip {
-    background: white !important;
-    background-color: white !important;
-    border: none !important;
-    box-shadow: -1px -1px 2px rgba(32, 112, 91, 0.05) !important;
-    width: 14px !important;
-    height: 14px !important;
-    padding: 1px !important;
-    margin: -8px auto 0 !important;
-    transform: rotate(45deg) !important;
-    border-top: 1px solid rgba(32, 112, 91, 0.3) !important;
-    border-left: 1px solid rgba(32, 112, 91, 0.3) !important;
-}
-
-/* Botón cerrar del popup - Mejorado */
-.leaflet-popup-close-button {
-    color: rgba(255, 255, 255, 0.9) !important;
-    font-size: 16px !important;
-    font-weight: bold !important;
-    padding: 0 !important;
-    border-radius: 50% !important;
-    background: rgba(220, 53, 69, 0.8) !important;
-    backdrop-filter: blur(10px) !important;
-    border: 2px solid rgba(255, 255, 255, 0.3) !important;
-    transition: all 0.3s ease !important;
-    top: 8px !important;
-    right: 8px !important;
-    width: 28px !important;
-    height: 28px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
-    text-decoration: none !important;
-    line-height: 1 !important;
-}
-
-.leaflet-popup-close-button:hover {
-    background: rgba(220, 53, 69, 1) !important;
-    color: white !important;
-    transform: scale(1.1) rotate(90deg) !important;
-    border-color: rgba(255, 255, 255, 0.6) !important;
-    box-shadow: 0 4px 16px rgba(220, 53, 69, 0.4) !important;
-}
-
-.leaflet-popup-close-button:active {
-    transform: scale(0.95) !important;
-}
-
-/* Control de capas - Diseño elegante */
-.leaflet-control-layers {
-    background: rgba(255, 255, 255, 0.98) !important;
-    backdrop-filter: blur(15px) !important;
-    -webkit-backdrop-filter: blur(15px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.4) !important;
-    border-radius: 16px !important;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15) !important;
-    padding: 0 !important;
-    overflow: hidden !important;
-}
-
-.leaflet-control-layers-toggle {
-    background: rgba(255, 255, 255, 0.95) !important;
-    border-radius: 12px !important;
-    width: 44px !important;
-    height: 44px !important;
-    background-image: none !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    transition: all 0.3s ease !important;
-    border: 1px solid rgba(255, 255, 255, 0.4) !important;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
-}
-
-.leaflet-control-layers-toggle::before {
-    content: "⚏" !important;
-    font-size: 20px !important;
-    color: var(--color-verde-profundo) !important;
-    font-weight: bold !important;
-}
-
-.leaflet-control-layers-toggle:hover {
-    background: var(--color-verde-profundo) !important;
-    transform: scale(1.05) !important;
-}
-
-.leaflet-control-layers-toggle:hover::before {
-    color: white !important;
-}
-
-.leaflet-control-layers-expanded {
-    padding: 20px !important;
-    min-width: 280px !important;
-}
-
-/* Secciones del control de capas */
-.leaflet-control-layers-base,
-.leaflet-control-layers-overlays {
-    margin-bottom: 15px !important;
-}
-
-.leaflet-control-layers-separator {
-    height: 2px !important;
-    background: linear-gradient(90deg, transparent, var(--color-verde-profundo), transparent) !important;
-    border: none !important;
-    margin: 15px 0 !important;
-}
-
-/* Labels de las capas */
-.leaflet-control-layers label {
-    font-family: var(--font-family) !important;
-    font-weight: 500 !important;
-    font-size: 0.9rem !important;
-    color: var(--color-burdeos-oscuro) !important;
-    padding: 8px 12px !important;
-    margin: 4px 0 !important;
-    border-radius: 8px !important;
-    transition: all 0.3s ease !important;
-    cursor: pointer !important;
-    display: flex !important;
-    align-items: center !important;
-    background: rgba(255, 255, 255, 0.5) !important;
-    border: 1px solid rgba(0, 0, 0, 0.05) !important;
-}
-
-.leaflet-control-layers label:hover {
-    background: rgba(32, 112, 91, 0.1) !important;
-    border-color: var(--color-verde-profundo) !important;
-    transform: translateX(4px) !important;
-}
-
-/* Inputs de radio y checkbox */
-.leaflet-control-layers input[type="radio"],
-.leaflet-control-layers input[type="checkbox"] {
-    margin-right: 10px !important;
-    transform: scale(1.2) !important;
-    accent-color: var(--color-verde-profundo) !important;
-}
-
-/* Control de zoom - Mejorado */
-.leaflet-control-zoom {
-    border: none !important;
-    border-radius: 12px !important;
-    overflow: hidden !important;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
-}
-
-.leaflet-control-zoom a {
-    background: rgba(255, 255, 255, 0.98) !important;
-    backdrop-filter: blur(10px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.4) !important;
-    color: var(--color-verde-profundo) !important;
-    font-weight: bold !important;
-    font-size: 18px !important;
-    transition: all 0.3s ease !important;
-    width: 44px !important;
-    height: 44px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-}
-
-.leaflet-control-zoom a:hover {
-    background: var(--color-verde-profundo) !important;
-    color: white !important;
-    transform: scale(1.05) !important;
-}
-
-.leaflet-control-zoom a:first-child {
-    border-radius: 12px 12px 0 0 !important;
-}
-
-.leaflet-control-zoom a:last-child {
-    border-radius: 0 0 12px 12px !important;
-}
-
-/* Atribución - Mejorada */
-.leaflet-control-attribution {
-    background: rgba(255, 255, 255, 0.9) !important;
-    backdrop-filter: blur(10px) !important;
-    border-radius: 8px 8px 0 0 !important;
-    padding: 6px 12px !important;
-    font-size: 0.75rem !important;
-    color: var(--color-burdeos-oscuro) !important;
-    border: 1px solid rgba(255, 255, 255, 0.4) !important;
-    border-bottom: none !important;
-}
-
-.leaflet-control-attribution a {
-    color: var(--color-verde-profundo) !important;
-    text-decoration: none !important;
-    font-weight: 500 !important;
-}
-
-.leaflet-control-attribution a:hover {
-    color: var(--color-burdeos-medio) !important;
-    text-decoration: underline !important;
-}
-
-/* Animaciones suaves para todos los controles */
-.leaflet-control {
-    animation: fadeInUp 0.5s ease-out !important;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .leaflet-popup-content {
-        max-width: 280px !important;
-        padding: 15px !important;
-    }
-    
-    .leaflet-control-layers-expanded {
-        min-width: 240px !important;
-        padding: 15px !important;
-    }
-    
-    .leaflet-popup-content .table th,
-    .leaflet-popup-content .table td {
-        padding: 8px 6px !important;
-        font-size: 0.8rem !important;
-    }
-}/* 
-===== ESTILOS ADICIONALES PARA POPUPS MÁS ELEGANTES ===== */
-
-/* Popup con efecto de entrada suave */
-.leaflet-popup {
-    animation: popupSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-@keyframes popupSlideIn {
-    0% {
-        opacity: 0;
-        transform: translateY(-20px) scale(0.9);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-/* Contenido del popup con mejor espaciado */
-.leaflet-popup-content-wrapper {
-    max-width: 400px !important;
-    min-width: 280px !important;
-}
-
-/* Encabezado del popup con icono */
-.leaflet-popup-content h6 {
-    display: flex !important;
-    align-items: center !important;
-    gap: 8px !important;
-    background: linear-gradient(135deg, var(--color-verde-profundo), var(--color-verde-marino)) !important;
-    color: white !important;
-    margin: -20px -20px 15px -20px !important;
-    padding: 15px 20px !important;
-    border-radius: 16px 16px 0 0 !important;
-    border-bottom: none !important;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
-}
-
-/* Icono en el encabezado del popup */
-.leaflet-popup-content h6::before {
-    content: "📍" !important;
-    font-size: 1.2rem !important;
-    filter: brightness(1.2) !important;
-}
-
-/* Tabla del popup con mejor diseño */
-.leaflet-popup-content .table-responsive {
-    margin: 0 -5px !important;
-    border-radius: 12px !important;
-    border: 1px solid rgba(32, 112, 91, 0.1) !important;
-}
-
-.leaflet-popup-content .table {
-    border-radius: 12px !important;
-    overflow: hidden !important;
-}
-
-/* Filas de la tabla con mejor contraste */
-.leaflet-popup-content .table th {
-    background: var(--color-verde-profundo) !important;
-    color: white !important;
-    font-size: 0.75rem !important;
-    padding: 8px 12px !important;
-    font-weight: 600 !important;
-    text-align: left !important;
-    width: 40% !important;
-}
-
-.leaflet-popup-content .table td {
-    background: white !important;
-    padding: 8px 12px !important;
-    font-weight: 500 !important;
-    color: var(--color-burdeos-oscuro) !important;
-    border-left: 3px solid var(--color-verde-profundo) !important;
-}
-
-/* Alternancia de colores en filas */
-.leaflet-popup-content .table tr:nth-child(even) td {
-    background: rgba(32, 112, 91, 0.02) !important;
-}
-
-/* Efecto hover en filas */
-.leaflet-popup-content .table tr:hover td {
-    background: rgba(32, 112, 91, 0.05) !important;
-    transform: translateX(2px) !important;
-    transition: all 0.2s ease !important;
-}
-
-/* Valores especiales en la tabla */
-.leaflet-popup-content .table td[data-value*="Operativo"],
-.leaflet-popup-content .table td:contains("Operativo") {
-    color: var(--color-verde-profundo) !important;
-    font-weight: 600 !important;
-}
-
-.leaflet-popup-content .table td[data-value*="Mantenimiento"],
-.leaflet-popup-content .table td:contains("Mantenimiento") {
-    color: var(--color-mostaza-amarillo) !important;
-    font-weight: 600 !important;
-}
-
-.leaflet-popup-content .table td[data-value*="Fuera"],
-.leaflet-popup-content .table td:contains("Fuera") {
-    color: var(--color-rojo-vivo) !important;
-    font-weight: 600 !important;
-}
-
-/* Footer del popup con información adicional */
-.leaflet-popup-content::after {
-    content: "" !important;
-    display: block !important;
-    width: 100% !important;
-    height: 2px !important;
-    background: linear-gradient(90deg, transparent, var(--color-verde-profundo), transparent) !important;
-    margin: 15px 0 5px 0 !important;
-}
-
-/* Botón cerrar mejorado */
-.leaflet-popup-close-button {
-    background: rgba(255, 255, 255, 0.95) !important;
-    backdrop-filter: blur(10px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.6) !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
-}
-
-.leaflet-popup-close-button:hover {
-    background: var(--color-rojo-vivo) !important;
-    border-color: var(--color-rojo-vivo) !important;
-    box-shadow: 0 4px 12px rgba(226, 72, 73, 0.3) !important;
-}
-
-/* Punta del popup con mejor integración */
-.leaflet-popup-tip {
-    background: rgba(255, 255, 255, 0.98) !important;
-    backdrop-filter: blur(15px) !important;
-}
-
-/* Popup para diferentes tipos de capas */
-.leaflet-popup[data-layer*="ductos"] .leaflet-popup-content h6 {
-    background: linear-gradient(135deg, var(--color-rojo-coral), var(--color-naranja-fuerte)) !important;
-}
-
-.leaflet-popup[data-layer*="electr"] .leaflet-popup-content h6 {
-    background: linear-gradient(135deg, var(--color-verde-profundo), var(--color-verde-marino)) !important;
-}
-
-.leaflet-popup[data-layer*="gas"] .leaflet-popup-content h6 {
-    background: linear-gradient(135deg, var(--color-mostaza-amarillo), var(--color-amarillo-suave)) !important;
-    color: var(--color-burdeos-oscuro) !important;
-}
-
-/* Scrollbar personalizada para popups largos */
-.leaflet-popup-content::-webkit-scrollbar {
-    width: 6px !important;
-}
-
-.leaflet-popup-content::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.05) !important;
-    border-radius: 3px !important;
-}
-
-.leaflet-popup-content::-webkit-scrollbar-thumb {
-    background: var(--color-verde-profundo) !important;
-    border-radius: 3px !important;
-}
-
-.leaflet-popup-content::-webkit-scrollbar-thumb:hover {
-    background: var(--color-verde-marino) !important;
-}
-
-/* Responsive para popups en móviles */
-@media (max-width: 768px) {
-    .leaflet-popup-content-wrapper {
-        min-width: 260px !important;
-        max-width: 320px !important;
-    }
-    
-    .leaflet-popup-content {
-        padding: 15px !important;
-    }
-    
-    .leaflet-popup-content h6 {
-        margin: -15px -15px 12px -15px !important;
-        padding: 12px 15px !important;
-        font-size: 1rem !important;
-    }
-    
-    .leaflet-popup-content .table th,
-    .leaflet-popup-content .table td {
-        padding: 6px 8px !important;
-        font-size: 0.8rem !important;
-    }
-}
-
-/* Efecto de sombra dinámica según la posición */
-.leaflet-popup-content-wrapper {
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15), 
-                0 4px 16px rgba(32, 112, 91, 0.1) !important;
-}
-
-/* Indicador de tipo de infraestructura */
-.leaflet-popup-content h6::after {
-    content: "" !important;
-    position: absolute !important;
-    right: 15px !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    width: 8px !important;
-    height: 8px !important;
-    background: rgba(255, 255, 255, 0.8) !important;
-    border-radius: 50% !important;
-    animation: pulse 2s infinite !important;
-}
-
-@keyframes pulse {
-    0%, 100% {
-        opacity: 1;
-        transform: translateY(-50%) scale(1);
-    }
-    50% {
-        opacity: 0.7;
-        transform: translateY(-50%) scale(1.2);
-    }
-}/* ===== FO
-RZAR FONDO BLANCO EN TODOS LOS POPUPS ===== */
-
-/* Forzar fondo blanco en toda la estructura del popup */
-.leaflet-popup,
-.leaflet-popup *,
-.leaflet-popup-content-wrapper,
-.leaflet-popup-content,
-.leaflet-popup-tip,
-.leaflet-popup-tip-container {
-    background: white !important;
-    background-color: white !important;
-}
-
-/* Asegurar que el contenido tenga fondo blanco */
-.leaflet-popup-content .table-responsive,
-.leaflet-popup-content .table,
-.leaflet-popup-content .table tbody,
-.leaflet-popup-content .table tbody tr,
-.leaflet-popup-content .table tbody tr td {
-    background: white !important;
-    background-color: white !important;
-}
-
-/* Solo el header de la tabla debe tener color */
-.leaflet-popup-content .table th {
-    background: var(--color-verde-profundo) !important;
-    background-color: var(--color-verde-profundo) !important;
-    color: white !important;
-}
-
-/* Filas alternas con fondo muy sutil */
-.leaflet-popup-content .table tr:nth-child(even) td {
-    background: #f8f9fa !important;
-    background-color: #f8f9fa !important;
-}
-
-/* Hover con fondo muy claro */
-.leaflet-popup-content .table tr:hover td {
-    background: #e8f5e8 !important;
-    background-color: #e8f5e8 !important;
-}
-
-/* Encabezado del popup - solo este debe tener color */
-.leaflet-popup-content h6 {
-    background: linear-gradient(135deg, var(--color-verde-profundo), var(--color-verde-marino)) !important;
-    background-color: var(--color-verde-profundo) !important;
-    color: white !important;
-}
-
-/* Resto del contenido debe ser blanco */
-.leaflet-popup-content p,
-.leaflet-popup-content div:not(h6):not(.table):not(.table-responsive) {
-    background: white !important;
-    background-color: white !important;
-    color: var(--color-burdeos-oscuro) !important;
-}
-
-/* Botón cerrar integrado con el diseño */
-.leaflet-popup-close-button {
-    background: rgba(220, 53, 69, 0.8) !important;
-    background-color: rgba(220, 53, 69, 0.8) !important;
-    color: white !important;
-    border: 2px solid rgba(255, 255, 255, 0.3) !important;
-}
-
-/* Sobrescribir cualquier estilo oscuro que pueda venir del tema */
-.leaflet-container .leaflet-popup-content-wrapper {
-    background: white !important;
-    background-color: white !important;
-}
-
-.leaflet-container .leaflet-popup-content {
-    background: white !important;
-    background-color: white !important;
-}
-
-.leaflet-container .leaflet-popup-tip {
-    background: white !important;
-    background-color: white !important;
-}/* ===== C
-ORRECCIÓN ADICIONAL PARA LA PUNTA DEL POPUP ===== */
-
-/* Contenedor de la punta del popup */
-.leaflet-popup-tip-container {
-    background: transparent !important;
-    width: 20px !important;
-    height: 10px !important;
-    position: relative !important;
-    margin: 0 auto !important;
-    overflow: visible !important;
-}
-
-/* Punta del popup - Triángulo perfecto */
-.leaflet-popup-tip {
-    background: white !important;
-    width: 14px !important;
-    height: 14px !important;
-    position: absolute !important;
-    left: 50% !important;
-    margin-left: -7px !important;
-    transform: rotate(45deg) !important;
-    border: 1px solid rgba(32, 112, 91, 0.2) !important;
-    border-bottom: none !important;
-    border-right: none !important;
-    box-shadow: -2px -2px 4px rgba(0, 0, 0, 0.05) !important;
-}
-
-/* Asegurar que no haya interferencia con otros estilos */
-.leaflet-popup-content-wrapper .leaflet-popup-tip {
-    background: white !important;
-    background-color: white !important;
-}
-
-/* Posicionamiento correcto del popup completo */
-.leaflet-popup {
-    margin-bottom: 20px !important;
-}/* Hover p
-ara el botón de centrar mapa */
-#center-map-btn:hover {
-    background: var(--color-verde-profundo) !important;
-    color: white !important;
-    transform: scale(1.05) !important;
-    border-color: var(--color-verde-profundo) !important;
-    box-shadow: 0 6px 20px rgba(32, 112, 91, 0.3) !important;
-}
-
-/* Focus para accesibilidad */
-#center-map-btn:focus {
-    outline: 2px solid var(--color-verde-profundo);
-    outline-offset: 2px;
-}
-
-/* Asegurar que el botón esté por encima de otros elementos */
-#center-map-btn {
-    z-index: 1000 !important;
-}/* 
-===== BOTÓN CERRAR POPUP - ESTILO FINAL ===== */
-
-/* Sobrescribir cualquier estilo conflictivo del botón cerrar */
-.leaflet-container .leaflet-popup-close-button {
-    background: rgba(220, 53, 69, 0.85) !important;
-    color: white !important;
-    border: 2px solid rgba(255, 255, 255, 0.4) !important;
-    border-radius: 50% !important;
-    width: 28px !important;
-    height: 28px !important;
-    top: 8px !important;
-    right: 8px !important;
-    font-size: 14px !important;
-    font-weight: 700 !important;
-    text-align: center !important;
-    line-height: 1 !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
-    backdrop-filter: blur(8px) !important;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-.leaflet-container .leaflet-popup-close-button:hover {
-    background: rgba(220, 53, 69, 1) !important;
-    border-color: rgba(255, 255, 255, 0.7) !important;
-    transform: scale(1.1) rotate(90deg) !important;
-    box-shadow: 0 4px 16px rgba(220, 53, 69, 0.5) !important;
-}
-
-.leaflet-container .leaflet-popup-close-button:active {
-    transform: scale(0.9) rotate(90deg) !important;
-    transition: transform 0.1s ease !important;
-}
-
-/* Asegurar que el símbolo × se vea centrado */
-.leaflet-container .leaflet-popup-close-button::before {
-    content: "×" !important;
-    display: block !important;
-    width: 100% !important;
-    height: 100% !important;
-    line-height: 24px !important;
-    text-align: center !important;
-    font-size: 16px !important;
-    font-weight: 700 !important;
-}
-
-/* Eliminar el contenido por defecto */
-.leaflet-container .leaflet-popup-close-button {
-    text-indent: -9999px !important;
-    overflow: hidden !important;
-}
-
-/* Restaurar el contenido con el pseudo-elemento */
-.leaflet-container .leaflet-popup-close-button::before {
-    text-indent: 0 !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
 }
