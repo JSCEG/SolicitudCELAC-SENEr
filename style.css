@@ -1,253 +1,271 @@
-/*
-    Estilos institucionales y mobile-first.
-    Paleta de referencia (tomada de la imagen):
-    - Primario: #7C1946 (vino)
-    - Secundario: #197E74 (verde)
-    - Acento: #C49A3E (dorado)
-    - Fondo claro: #F7F4F2
-*/
-
 :root {
-    --primary: #7C1946;
-    --primary-600: #641238;
-    --secondary: #197E74;
-    --accent: #C49A3E;
-    --muted: #F7F4F2;
+    --color-burdeos-oscuro: #35031B;
+    --color-burdeos-medio: #601623;
+    --color-rosa-palido: #EFD2DC;
+    --color-vino: #58152A;
+    --color-magenta-claro: #F9D9D9;
+    --color-magenta-oscuro: #7E1D37;
+    --color-magenta-vivo: #AC4651;
+    --color-magenta-medio: #8E1F1E;
+    --color-aqua-claro: #95E5E0;
+    --color-aqua-medio: #7FC8A5;
+    --color-verde-claro: #39795E;
+    --color-verde-marino: #1F7A62;
+    --color-verde-profundo: #20705B;
+    --color-verde-oscuro: #225655;
+    --color-verde-petroleo: #174D47;
+    --color-verde-profundo-oscuro: #11352C;
+    --color-marron-oscuro: #491900;
+    --color-mostaza-claro: #C69A04;
+    --color-marron-medio: #764B13;
+    --color-mostaza-amarillo: #C69A04;
+    --color-amarillo-arena: #B88C23;
+    --color-amarillo-suave: #DDAD2C;
+    --color-amarillo-palido: #B86C46;
+    --color-amarillo-claro: #FEC747;
+    --color-rosa-suave: #FFBFD0;
+    --color-rosa-pastel: #F5ADAB;
+    --color-rojo-vino: #601805;
+    --color-rojo-oscuro: #B64836;
+    --color-rojo-vivo: #E24849;
+    --color-rojo-coral: #E66A54;
+    --color-naranja-coral: #E86D5A;
+    --color-naranja-fuerte: #E85D33;
+    --color-naranja-vivo: #E85D14;
+
+    --font-family: 'Montserrat', sans-serif;
+    --bg-color: #f5f5f5;
 }
 
-/* Ajustes de Bootstrap por paleta */
-.bg-primary {
-    background-color: var(--primary) !important;
+body {
+    font-family: var(--font-family);
+    background: radial-gradient(circle at 25% 20%, #ffffff 0%, #f5f6f7 45%, #eceeef 100%);
+    color: var(--color-burdeos-oscuro);
 }
 
-.navbar-dark .navbar-brand,
-.navbar-dark .navbar-nav .nav-link {
-    color: #fff;
+h1 {
+    color: var(--color-burdeos-oscuro);
 }
 
-.btn-primary {
-    background-color: var(--primary);
-    border-color: var(--primary-600);
+.lead {
+    color: var(--color-verde-profundo);
 }
 
-.btn-primary:hover {
-    background-color: var(--primary-600);
-    border-color: var(--primary-600);
-}
-
-.btn-success {
-    background-color: var(--secondary);
-    border-color: var(--secondary);
-}
-
-.btn-outline-danger {
-    border-color: #dc3545;
-    color: #dc3545;
-}
-
-.btn-outline-danger:hover {
-    background: #dc3545;
-    color: #fff;
-}
-
-.bg-body {
-    background-color: var(--muted);
-}
-
-/* Mapa responsive: ocupa alto adecuado en móvil y crece en escritorio */
 #map {
     width: 100%;
-    height: 60vh;
-    /* Móvil: 60% de la ventana */
-    min-height: 360px;
-    /* Alto mínimo razonable */
-    border-radius: .5rem;
+    height: 62vh;
+    border-radius: 18px;
+    box-shadow: 0 10px 28px -6px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    overflow: hidden;
 }
 
 @media (min-width: 992px) {
     #map {
-        height: calc(100vh - 220px);
+        height: 70vh;
     }
 }
 
-/* Panel de lista CVEGEO */
-#cvegeoList {
-    max-height: 240px;
-    overflow-y: auto;
+#center-map-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 400;
+    background-color: var(--color-magenta-claro);
+    border: 1px solid var(--color-magenta-oscuro);
+    color: var(--color-magenta-oscuro);
 }
 
-#cvegeoList ul {
+/* Switches dentro de las cards (personalización leve) */
+.layer-switch:checked {
+    background-color: var(--color-verde-profundo);
+    border-color: var(--color-verde-profundo);
+}
+.layer-switch:not(:checked) {
+    background-color: #ccc;
+}
+
+.main-footer {
+    background: linear-gradient(45deg, var(--color-verde-profundo-oscuro), var(--color-verde-petroleo));
+    color: var(--color-rosa-palido);
+    padding: 3rem 0;
+    font-size: 0.9rem;
+}
+
+.main-footer h5 {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--color-aqua-claro);
+}
+
+.main-footer a {
+    color: var(--color-rosa-palido);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.main-footer a:hover {
+    color: var(--color-amarillo-claro);
+}
+
+.main-footer ul {
     list-style: none;
-    padding-left: 1rem;
+    padding: 0;
 }
 
-#cvegeoList li {
-    padding: .25rem 0;
-    border-bottom: 1px dashed #ddd;
-    cursor: pointer;
+.main-footer ul li {
+    margin-bottom: 0.5rem;
 }
 
-#cvegeoList li:last-child {
-    border-bottom: none;
+.main-footer .social-icons {
+    display: flex;
+    gap: 1rem;
 }
 
-/* Resaltado del elemento activo en la lista */
-#cvegeoList li.active {
-    background: rgba(124, 25, 70, 0.08);
-    /* usa tono primario translúcido */
-    border-left: 3px solid var(--primary);
-    padding-left: .5rem;
+.main-footer .social-icons a {
+    font-size: 1.5rem;
 }
 
-/* Transición para ocultar preloader de forma suave */
+/* Offcanvas eliminado */
+
+.layer-control-item {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.layer-control-item.highlighted {
+    background-color: var(--color-amarillo-suave);
+}
+
+.layer-control-item .form-range {
+    margin-top: 0.5rem;
+}
+
 #preloader {
-    display: none;
-    /* Oculto por defecto para no bloquear la vista inicial */
-    opacity: 1;
-    transition: opacity .3s ease;
+    background: var(--bg-color);
+    z-index: 10000;
 }
 
-.no-transition {
-    transition: none !important;
+#preloader .spinner-border {
+    color: var(--color-burdeos-medio) !important;
 }
 
-/* Si el nodo tiene el atributo hidden, asegúrate que quede fuera del flujo */
-#preloader[hidden] {
-    display: none !important;
-    opacity: 0 !important;
+#preProgressBar {
+    background: linear-gradient(90deg, var(--color-magenta-vivo), var(--color-rojo-vivo));
 }
 
 .preloader-hide {
     opacity: 0;
+    visibility: hidden;
+    transition: opacity .5s ease, visibility .5s ease;
 }
 
-/* Acordeón institucional (colores de marca) */
-.accordion-button {
-    background-color: #ffffff;
-    color: #333;
+/* Simple-DataTables */
+.dataTable-wrapper {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.accordion-button:not(.collapsed) {
-    color: #fff;
-    background-color: var(--primary);
-    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .125);
+/* Leaflet EasyPrint */
+.leaflet-control-easyprint a {
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
 }
 
-.accordion-button:focus {
-    box-shadow: 0 0 0 .25rem rgba(124, 25, 70, .25);
+.leaflet-control-easyprint a:hover {
+    background-color: #f4f4f4;
 }
 
-.accordion-item {
-    border-color: rgba(0, 0, 0, .075);
+h5
+
+/* Legend Styles */
+#legend-container .card-header {
+    background: transparent;
+    color: var(--color-rosa-palido);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.9);
 }
 
-.accordion-body {
-    border-top: 1px solid rgba(0, 0, 0, .05);
+#legend-container .card-body {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
-/* Spinner con color secundario */
-.spinner-border.text-primary {
-    color: var(--secondary) !important;
+.legend-item {
+    font-size: 0.9rem;
 }
 
-/* Progreso del preloader */
-#preProgressBar {
-    transition: width .2s ease;
+/* Total Cards Styles (clean white variant) */
+#total-cards-container .card {
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 14px;
+    box-shadow: 0 6px 18px -6px rgba(0, 0, 0, 0.18);
+    background: #ffffff;
+    color: #212529;
 }
 
-/* Footer institucional inspirado en gob.mx */
-.gov-footer {
-    background-color: #5c102e;
-    /* tono vino oscuro cercano al screenshot */
-    position: relative;
+#total-cards-container .card-title {
+    font-weight: 600;
+    color: #555;
+    font-size: 0.65rem;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    margin-bottom: .35rem;
 }
 
-.gov-footer a.link-light {
-    text-decoration: none;
+#total-cards-container .card-text {
+    font-weight: 700;
+    color: #111;
+    font-size: 1.35rem;
+    margin: 0;
 }
 
-.gov-footer a.link-light:hover {
-    text-decoration: underline;
-}
-
-.gov-footer .footer-pattern {
-    height: 56px;
-    background-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 40px),
-        repeating-linear-gradient(45deg, #7C1946 0, #7C1946 14px, #8c264f 14px, #8c264f 28px);
-    border-top: 6px solid #7C1946;
-}
-
-/* Utilidades para etiquetas de color en lista */
-.color-dot {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin-right: .5rem;
-    border: 1px solid rgba(0, 0, 0, .2);
-}
-
-/* Etiquetas CVEGEO en el mapa */
-.cvegeo-label span {
-    white-space: nowrap;
-    line-height: 1;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, .25);
-}
-
-/* Mejoras de UX para botones */
-.btn[disabled] {
-    cursor: not-allowed !important;
-    opacity: 0.65;
-}
-
-.btn:not([disabled]):hover {
-    transform: translateY(-1px);
-    transition: transform 0.2s ease;
-}
-
-/* Tooltips mejorados para mejor UX */
-[title] {
-    cursor: help;
-}
-
-/* Estilos para texto de ayuda */
-.form-text {
-    color: #6c757d;
-    font-size: 0.875rem;
-    line-height: 1.4;
-}
-
-/* Mejoras de accesibilidad para lista CVEGEO */
-#cvegeoList li {
-    transition: background-color 0.2s ease;
-}
-
-#cvegeoList li:hover {
-    background-color: rgba(124, 25, 70, 0.05);
-}
-
-#cvegeoList li:focus {
-    outline: 2px solid var(--primary);
-    outline-offset: 2px;
-}
-
-/* Indicadores visuales para elementos interactivos */
-.accordion-button::after {
-    transition: transform 0.2s ease;
-}
-
-.accordion-button[aria-expanded="true"]::after {
-    transform: rotate(180deg);
-}
-
-/* Mejoras para el mapa en dispositivos táctiles */
-@media (hover: none) and (pointer: coarse) {
-    #cvegeoList li {
-        padding: 0.5rem 0;
+/* Horizontal scroll helpers for cards on mobile */
+@media (max-width: 640px) {
+    #total-cards-container {
+        flex-wrap: nowrap !important;
+        overflow-x: auto;
+        display: flex;
     }
 
-    .btn {
-        min-height: 44px;
-        /* Tamaño mínimo táctil recomendado */
+    #total-cards-container>div {
+        min-width: 150px;
+        flex: 0 0 auto;
+    }
+
+    #total-cards-container::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    #total-cards-container::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.08);
+    }
+
+    #total-cards-container::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.35);
+        border-radius: 3px;
+    }
+}
+
+/* Legend items refined */
+.legend-item span:last-child {
+    letter-spacing: .25px;
+}
+
+/* Reduce motion for users preferring it */
+@media (prefers-reduced-motion: reduce) {
+
+    .glass,
+    #map,
+    .card {
+        transition: none !important;
+        animation: none !important;
     }
 }
