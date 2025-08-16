@@ -40,7 +40,9 @@
             <h3 class="fw-bold">Subsecretaría de Planeación y Transición Energética</h3>
             <p class="text-muted fs-5">Cargando datos y capas...</p>
             <div class="spinner-border text-main-color" role="status"
-                style="width:2.5rem; height:2.5rem; margin:1.5rem 0;"></div>
+                style="width:2.5rem; height:2.5rem; margin:1.5rem 0;">
+                <span class="visually-hidden">Cargando...</span>
+            </div>
             <div class="progress" style="height: 8px; width: 80%; margin: 0 auto; background-color: #e9ecef;">
                 <div id="preProgressBar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0"
                     aria-valuemin="0" aria-valuemax="100"></div>
@@ -48,15 +50,32 @@
         </div>
     </div>
 
-    <!-- (Navbar eliminado a solicitud) -->
+    <!-- Navbar Institucional -->
+    <nav class="institutional-navbar">
+        <div class="container-fluid">
+            <div class="row align-items-center w-100">
+                <div class="col-md-3 d-flex justify-content-start">
+                    <div class="navbar-brand-left">
+                        <img src="img/logo_sener.png" alt="SENER - Secretaría de Energía" class="sener-logo">
+                    </div>
+                </div>
+                <div class="col-md-6 text-center">
+                    <h1 class="navbar-title">Geovisor Regional de Infraestructura Energética - 2024</h1>
+                    <p class="navbar-subtitle">Subsecretaría de Planeación y Transición Energética</p>
+                </div>
+                <div class="col-md-3 d-flex justify-content-end">
+                    <div class="navbar-brand-right">
+                        <img src="img/logo_gob.png" alt="Gobierno de México" class="gob-logo">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
 
     <main>
         <div class="container py-4">
-            <h1 class="border-bottom pb-3 mb-2">Geovisor Regional de Infraestructura Energética y Políticas de
-                Transición Energética</h1>
             <p class="lead text-muted mb-4">Este geovisor presenta información solicitada sobre la infraestructura
-                energética
-                y las políticas de transición energética en la región, como parte de la iniciativa de
+                energética y las políticas de transición energética en la región, como parte de la iniciativa de
                 actualización de geovisores regionales para la CELAC.</p>
             <div id="total-cards-container" class="row mb-3" style="display: none;">
                 <!-- Total cards will be dynamically generated here -->

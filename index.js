@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
-    const fetchPromises = Object.entries(urls).map(([name, url], index) =>
+    const fetchPromises = Object.entries(urls).map(([name, url]) =>
         fetch(url)
             .then(response => {
                 if (!response.ok) throw new Error(`Network response was not ok for ${name}`);
@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 layerFeatureCounts[name] = Array.isArray(data.features) ? data.features.length : 0;
 
                 const geoJsonLayer = L.geoJSON(data, {
-                    style: (feature) => {
+                    style: () => {
                         return { color: color, weight: 2 };
                     },
                     pointToLayer: (feature, latlng) => {
